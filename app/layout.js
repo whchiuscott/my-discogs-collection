@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
 
       <body
         className={
-          "w-full max-w-[1000px] mx-auto text-sm sm:text-base min-h-screen flex flex-col " +
+          "w-full max-w-[1200px] mx-auto text-sm sm:text-base min-h-screen flex flex-col " +
           opensans.className
         }
       >
