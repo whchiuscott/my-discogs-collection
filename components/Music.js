@@ -122,7 +122,7 @@ export default function Music() {
           Scott&apos;s Record Collection 💽
         </p>
         <p className="text-[10px] xs:text-[13px] sm:text-sm md:text-base lg:text-xl text-sky-900 sm:mt-1">
-          All data fetched from my collection at{" "}
+          All data fetched from my collection on{" "}
           <a
             href="https://www.discogs.com/"
             target="_blank"
