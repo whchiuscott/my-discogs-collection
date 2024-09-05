@@ -201,7 +201,7 @@ export default function Music() {
       </div>
 
       {/* 專輯呈現區塊 */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 max-w-full sm:gap-3 lg:gap-[10px]">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 my-2 xs:my-3 sm:my-4 md:my-5 max-w-full sm:gap-1 md:gap-2 lg:gap-[10px]">
         {sortedRecords.map((record, i) => (
           <Record key={i} record={record} />
         ))}

@@ -5,7 +5,7 @@ export default function Record({ record, i }) {
   return (
     <div
       key={i}
-      className="flex flex-col justify-start items-center p-4 border border-transparent"
+      className="flex flex-col justify-start items-center border border-transparent"
     >
       <div className="aspect-square">
         <Image
