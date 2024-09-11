@@ -8,17 +8,15 @@ import Record from "@/components/Record";
 const fugaz = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
 
 export default function Music() {
-  // 新增 useState 來保存抓取到的資料
   const [records, setRecords] = useState(null);
   const [error, setError] = useState(null);
-  const [buttonText, setButtonText] = useState("↑"); // 使用 useState 控制按鈕文本
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // 新增狀態來控制 dropdown 是否顯示
-  const [selectedOption, setSelectedOption] = useState("Artist"); // 新增狀態來保存選擇的選項
+  const [buttonText, setButtonText] = useState("↑");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Artist");
   const [searchQuery, setSearchQuery] = useState("");
-  const [isAscending, setIsAscending] = useState(true); // 用來保存排序順序的 state，預設為升序
+  const [isAscending, setIsAscending] = useState(true);
 
   useEffect(() => {
-    // 新增 useEffect 來抓取 Discogs API 的資料
     const fetchRecords = async () => {
       try {
         const response = await fetch(
@@ -30,22 +28,21 @@ export default function Music() {
         }
 
         const data = await response.json();
-        setRecords(data.releases); // 設定資料到 state
+        setRecords(data.releases);
       } catch (error) {
         console.error("Failed to fetch records:", error.message);
-        setError(error); // 如果抓取資料有錯誤，設定錯誤狀態
+        setError(error);
       }
     };
 
-    fetchRecords(); // 執行抓取資料的函數
-  }, []); // 空陣列確保只在初次渲染時執行
+    fetchRecords();
+  }, []);
 
   const handleClick = () => {
-    setButtonText((prevText) => (prevText === "↑" ? "↓" : "↑")); // 更新按鈕文本
-    setIsAscending((prevState) => !prevState); // 反轉排序方向
+    setButtonText((prevText) => (prevText === "↑" ? "↓" : "↑"));
+    setIsAscending((prevState) => !prevState);
   };
 
-  // 新增處理選擇選項的函數
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setIsDropdownOpen(false);
@@ -55,20 +52,16 @@ export default function Music() {
     setSearchQuery(e.target.value);
   };
 
-  // 點擊外部區域時關閉 Dropdown 的效果
   useEffect(() => {
     function handleClickOutside(event) {
-      // 檢查點擊的元素是否在 dropdown 範圍內，如果不在則關閉 dropdown
       if (!event.target.closest(".dropdown-container")) {
         setIsDropdownOpen(false);
       }
     }
 
-    // 監聽全域的點擊事件
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      // 清理事件監聽器
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
@@ -76,7 +69,7 @@ export default function Music() {
   if (error) {
     return <div>Failed to load records: {error.message}</div>;
   }
-  // 在 records 為 null 時顯示 loading 狀態
+
   if (!records) {
     return <Loading />;
   }
@@ -97,17 +90,17 @@ export default function Music() {
     let comparison = 0;
     if (selectedOption === "Album") {
       comparison =
-        a.basic_information.title > b.basic_information.title ? 1 : -1; // 根據 Album 排序
+        a.basic_information.title > b.basic_information.title ? 1 : -1;
     } else if (selectedOption === "Year Released") {
-      comparison = a.basic_information.year - b.basic_information.year; // 根據 Year Released 排序
+      comparison = a.basic_information.year - b.basic_information.year;
     } else {
       comparison =
         a.basic_information.artists[0].name >
         b.basic_information.artists[0].name
           ? 1
-          : -1; // 根據 Artist 排序（預設）
+          : -1;
     }
-    return isAscending ? comparison : -comparison; // 根據排序方向返回比較結果
+    return isAscending ? comparison : -comparison;
   });
 
   return (
@@ -134,7 +127,6 @@ export default function Music() {
       </div>
 
       <div className="flex flex-row justify-center flex-wrap gap-1 xxs:gap-2 xs:gap-2 sm:gap-3">
-        {/* 升冪降冪按鈕 */}
         <button
           className={
             "text-xs sm:text-base md:text-lg min-w-10 xxxs:min-w-14 xxs:min-w-20 sm:min-w-20 min-h-4 sm:min-h-12 md:min-h-14 rounded-full overflow-hidden duration-200 hover:bg-[#1e5e86] hover:border-[#1e5e86] border-2 border-solid border-[#0171b1] text-white bg-[#0171b1]  " +
@@ -144,9 +136,7 @@ export default function Music() {
         >
           {buttonText}
         </button>
-        {/* 結束升冪降冪按鈕 */}
 
-        {/* Dropdown Menu */}
         <div className="relative dropdown-container">
           <div className="relative">
             <button
@@ -154,7 +144,7 @@ export default function Music() {
                 "relative flex flex-row justify-center items-center p-2 text-xs sm:text-base md:text-lg min-w-40 xxxs:min-w-44 xxs:min-w-48 sm:min-w-52 md:min-w-56 min-h-4 sm:min-h-12 md:min-h-14 text-center rounded-full overflow-hidden duration-200 border-2 border-solid border-[#0171b1] focus:outline-none hover:border-[#1e5e86] text-sky-800 " +
                 fugaz.className
               }
-              onClick={() => setIsDropdownOpen((prev) => !prev)} // 點擊時切換 dropdown 顯示狀態
+              onClick={() => setIsDropdownOpen((prev) => !prev)}
             >
               <p>{selectedOption}</p>{" "}
               <p className="absolute right-2.5 md:right-3">▼</p>
@@ -184,9 +174,7 @@ export default function Music() {
             )}
           </div>
         </div>
-        {/* 結束 Dropdown Menu */}
 
-        {/* 輸入欄位 */}
         <input
           name="type"
           className={
@@ -197,16 +185,13 @@ export default function Music() {
           value={searchQuery}
           onChange={handleSearchChange}
         ></input>
-        {/* 結束輸入欄位 */}
       </div>
 
-      {/* 專輯呈現區塊 */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 my-2 xs:my-3 sm:my-4 md:my-5 max-w-full sm:gap-1 md:gap-2 lg:gap-[10px]">
         {sortedRecords.map((record, i) => (
           <Record key={i} record={record} />
         ))}
       </div>
-      {/* 專輯呈現區塊 */}
     </main>
   );
 }

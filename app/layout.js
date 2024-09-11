@@ -11,13 +11,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // const header = (
-  //   <header className="p-2 sm:p-8 flex items-center justify-between gap-4">
-  //     <h1 className={"text-sm sm:text-lg textGradient " + fugaz.className}>
-  //       Scott's Music Collection
-  //     </h1>
-  //   </header>
-  // );
   const footer = (
     <footer className="p-2 pb-6 grid place-items-center">
       <p className={"text-sky-700 text-center " + fugaz.className}>
