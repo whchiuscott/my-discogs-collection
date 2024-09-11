@@ -8,7 +8,7 @@ _Scott's Music Collection💽_ is a website I created to fetch and display data 
 (FYI: Discogs is a music database and marketplace platform that allows users to search, organize, and trade information about music albums, vinyl records, CDs, and other music media.) </br>
 This website allows me to easily view and search my own music collection, providing beautiful album covers and detailed information.
 
-你可以在這裡查看已部署的網站
+你可以在這裡查看已部署的網站</br>
 You can check out the live site here: [Scott's Music Collection 💽](https://scottchiu-discogs-collection.vercel.app/)
 
 ## 目錄
