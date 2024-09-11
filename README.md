@@ -1,9 +1,9 @@
-# Scott's Music Collection 💽
+# Scott's Music Collection💽
 
 「Scott's Music Collection💽」是我製作的一個網站，用來從我自己在 Discogs 的專輯收藏中抓取資料並呈現。</br>
 這個網站讓我可以輕鬆地查看和搜尋我個人的音樂收藏，並且提供了精美的專輯封面和詳細資訊。
 
-"Scott's Music Collection💽" is a website I created to fetch and display data from my personal album collection on Discogs.</br>
+_Scott's Music Collection💽_ is a website I created to fetch and display data from my personal album collection on Discogs.</br>
 This website allows me to easily view and search my music collection, providing beautiful album covers and detailed information.
 
 你可以在這裡查看已部署的網站
