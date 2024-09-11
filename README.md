@@ -1,10 +1,12 @@
 # Scott's Music Collection💽
 
-「Scott's Music Collection💽」是我製作的一個網站，用來從我自己在 Discogs 的專輯收藏中抓取資料並呈現。</br>
+「Scott's Music Collection💽」是我製作的一個網站，用來從我自己在 Discogs 的專輯收藏中 fetch 資料並呈現。</br>
+（FYI: Discogs 是一個音樂資料庫和市場平台，讓使用者能夠搜尋、整理和交易音樂專輯、黑膠唱片、CD 和其他音樂媒介的資訊。）</br>
 這個網站讓我可以輕鬆地查看和搜尋我個人的音樂收藏，並且提供了精美的專輯封面和詳細資訊。
 
 _Scott's Music Collection💽_ is a website I created to fetch and display data from my personal album collection on Discogs.</br>
-This website allows me to easily view and search my music collection, providing beautiful album covers and detailed information.
+(FYI: Discogs is a music database and marketplace platform that allows users to search, organize, and trade information about music albums, vinyl records, CDs, and other music media.) </br>
+This website allows me to easily view and search my own music collection, providing beautiful album covers and detailed information.
 
 你可以在這裡查看已部署的網站
 You can check out the live site here: [Scott's Music Collection 💽](https://scottchiu-discogs-collection.vercel.app/)
