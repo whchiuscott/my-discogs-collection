@@ -48,7 +48,7 @@ You can check out the live site here: [Scott's Music Collection 💽](https://sc
 
 1. Clone 專案至本地：
    ```bash
-   git clone https://github.com/your-username/scotts-music-collection.git
+   git clone https://github.com/whchiuscott/my-discogs-collection.git
 2. 安裝相關依賴套件：
    ```bash
    npm install
@@ -91,7 +91,7 @@ One of the major challenges during development was working with the Discogs API.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/scotts-music-collection.git
+   git clone https://github.com/whchiuscott/my-discogs-collection.git
 2. Install dependencies:
    ```bash
    npm install
