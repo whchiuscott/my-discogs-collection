@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <footer className="p-2 pb-6 grid place-items-center">
       <p className={"text-sky-700 text-center " + fugaz.className}>
         Created with 🩵 <br />
-        Copyright © Scott Chiu 2024-09
+        Copyright © Scott Chiu 2024
       </p>
     </footer>
   );
