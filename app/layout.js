@@ -30,7 +30,6 @@ export default function RootLayout({ children }) {
           opensans.className
         }
       >
-        {/* {header} */}
         {children}
         {footer}
       </body>

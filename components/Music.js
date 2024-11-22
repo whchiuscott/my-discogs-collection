@@ -17,6 +17,7 @@ export default function Music() {
   const [isAscending, setIsAscending] = useState(true);
 
   useEffect(() => {
+    //fetching data from discogs
     const fetchRecords = async () => {
       try {
         const response = await fetch(
@@ -24,7 +25,7 @@ export default function Music() {
         );
 
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`HTTP Error! Status: ${response.status}`);
         }
 
         const data = await response.json();
@@ -52,6 +53,7 @@ export default function Music() {
     setSearchQuery(e.target.value);
   };
 
+  //click outside to close dropdown effect
   useEffect(() => {
     function handleClickOutside(event) {
       if (!event.target.closest(".dropdown-container")) {
@@ -59,8 +61,10 @@ export default function Music() {
       }
     }
 
+    //listen to the whole doc for event
     document.addEventListener("mousedown", handleClickOutside);
 
+    //clean up
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -70,10 +74,12 @@ export default function Music() {
     return <div>Failed to load records: {error.message}</div>;
   }
 
+  //if records is still null, display loading
   if (!records) {
     return <Loading />;
   }
 
+  //only when records exist, proceed to filer records
   const filteredRecords = records.filter((record) => {
     const artistName = record.basic_information.artists[0].name.toLowerCase();
     const albumTitle = record.basic_information.title.toLowerCase();
@@ -86,35 +92,37 @@ export default function Music() {
     );
   });
 
+  //sort the filtered records
   const sortedRecords = filteredRecords.sort((a, b) => {
-    let comparison = 0;
+    let comparison = 0; //initialize a comparison value set to 0
     if (selectedOption === "Album") {
       comparison =
-        a.basic_information.title > b.basic_information.title ? 1 : -1;
+        a.basic_information.title > b.basic_information.title ? 1 : -1; // -1 is ascending, 1 is descending
     } else if (selectedOption === "Year Released") {
-      comparison = a.basic_information.year - b.basic_information.year;
+      comparison = a.basic_information.year - b.basic_information.year; //ascending
     } else {
       comparison =
         a.basic_information.artists[0].name >
         b.basic_information.artists[0].name
           ? 1
-          : -1;
+          : -1; // -1 is ascending, 1 is descending
     }
     return isAscending ? comparison : -comparison;
   });
 
   return (
     <main className="flex flex-col justify-start items-center flex-1 mx-2 gap-1 sm:gap-2 md:gap-4">
+      {/* Title & Subtitle */}
       <div className="flex flex-col justify-center items-center my-1 xxs:my-2 md:my-3 lg:my-5 gap-[6px] xxs:gap-2 xs:gap-3 md:gap-5 lg:gap-8">
-        <p
+        <h1
           className={
             "text-[20px] xxs:text-[23px] xs:text-[27px] sm:text-[39px] md:text-[49px] lg:text-[66px] text-sky-800 " +
             fugaz.className
           }
         >
           Scott&apos;s Record Collection 💽
-        </p>
-        <p className="text-[10px] xs:text-[13px] sm:text-sm md:text-base lg:text-xl text-sky-900 sm:mt-1">
+        </h1>
+        <h2 className="text-[10px] xs:text-[13px] sm:text-sm md:text-base lg:text-xl text-sky-900 sm:mt-1">
           All data fetched from my collection on{" "}
           <a
             href="https://www.discogs.com/"
@@ -123,10 +131,12 @@ export default function Music() {
           >
             Discogs ⚙️
           </a>
-        </p>
+        </h2>
       </div>
 
+      {/* buttn & dropdown menu & search */}
       <div className="flex flex-row justify-center flex-wrap gap-1 xxs:gap-2 xs:gap-2 sm:gap-3">
+        {/* button */}
         <button
           className={
             "text-xs sm:text-base md:text-lg min-w-10 xxxs:min-w-14 xxs:min-w-20 sm:min-w-20 min-h-4 sm:min-h-12 md:min-h-14 rounded-full overflow-hidden duration-200 hover:bg-[#1e5e86] hover:border-[#1e5e86] border-2 border-solid border-[#0171b1] text-white bg-[#0171b1]  " +
@@ -136,7 +146,7 @@ export default function Music() {
         >
           {buttonText}
         </button>
-
+        {/* dropdown menu */}
         <div className="relative dropdown-container">
           <div className="relative">
             <button
@@ -146,10 +156,10 @@ export default function Music() {
               }
               onClick={() => setIsDropdownOpen((prev) => !prev)}
             >
-              <p>{selectedOption}</p>{" "}
+              {selectedOption}
               <p className="absolute right-2.5 md:right-3">▼</p>
             </button>
-
+            {/* conditional rendering */}
             {isDropdownOpen && (
               <ul className="absolute left-0 mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-10">
                 <li
@@ -174,7 +184,7 @@ export default function Music() {
             )}
           </div>
         </div>
-
+        {/* search */}
         <input
           name="type"
           className={
@@ -188,8 +198,8 @@ export default function Music() {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 my-2 xs:my-3 sm:my-4 md:my-5 max-w-full sm:gap-1 md:gap-2 lg:gap-[10px]">
-        {sortedRecords.map((record, i) => (
-          <Record key={i} record={record} />
+        {sortedRecords.map((record, index) => (
+          <Record key={index} record={record} />
         ))}
       </div>
     </main>

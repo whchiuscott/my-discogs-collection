@@ -1,10 +1,10 @@
 import Image from "next/image";
 import React from "react";
 
-export default function Record({ record, i }) {
+export default function Record({ record, index }) {
   return (
     <div
-      key={i}
+      key={index}
       className="flex flex-col justify-start items-center border border-transparent"
     >
       <div className="aspect-square">
