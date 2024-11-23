@@ -6,7 +6,7 @@ const fugaz = Fugaz_One({ subsets: ["latin"], weight: ["400"] });
 const opensans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Scott's Music Collection 💽",
+  title: "Scott's Record Collection 💽",
   description: "Check out my music collection at Discogs!",
 };
 
